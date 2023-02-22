@@ -68,6 +68,8 @@ function checkScore(score, target) {
 function checkAttempts(yourAttempts, maxAttempts) {
     if (yourAttempts === maxAttempts) {
         inner.innerHTML = "You LOSE!!!";
+        inner.style.backgroundColor = "rgba(255, 0, 0, 0.452)";
+
         outer.style.display = "grid";
         reset();
     }
