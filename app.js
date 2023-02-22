@@ -57,26 +57,41 @@ function reset() {
 
 function checkScore(score, target) {
     if (score === target) {
-        localStorage.setItem('level', ++level);
-        inner.innerHTML = "You WON!!!";
-        inner.style.backgroundColor = "rgba(0, 255, 85, 0.452)";
-        outer.style.display = "grid";
+        btn.disabled = true;
 
-        reset();
+        localStorage.setItem('level', ++level);
+
+        setTimeout(() => {
+            btn.disabled = false;
+
+            inner.innerHTML = "You WON!!!";
+            inner.style.backgroundColor = "rgba(0, 255, 85, 0.452)";
+            outer.style.display = "grid";
+
+            reset();
+        }, 1000);
     }
 }
 function checkAttempts(yourAttempts, maxAttempts) {
-    if (yourAttempts === maxAttempts) {
-        inner.innerHTML = "You LOSE!!!";
-        inner.style.backgroundColor = "rgba(255, 0, 0, 0.452)";
+    // console.log({ yourAttempts, maxAttempts })
 
-        outer.style.display = "grid";
-        reset();
+    if (!(yourAttempts < maxAttempts)) {
+        btn.disabled = true;
+        setTimeout(() => {
+            btn.disabled = false;
+
+            inner.innerHTML = "You LOSE!!!";
+            inner.style.backgroundColor = "rgba(255, 0, 0, 0.452)";
+
+            outer.style.display = "grid";
+            reset();
+        }, 1000);
     }
 }
 
 
 function clickFn() {
+    // window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     scoreBoard.style.display = "grid";
 
     yourAttempts++;
@@ -93,22 +108,21 @@ function clickFn() {
 
         for (let i = 0; i < curScore; i++) {
             btn.style.backgroundColor = randomColor;
+            btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 6px 0px ${getRandomColor()}`;
             const ball = document.createElement("div");
             ball.classList.add("ball");
             ball.innerHTML = curScore;
-            ball.style.backgroundColor = randomColor;
-            ball.style.transitionDelay = `${(i) * 0.2}s`;
+            ball.style.background = `radial-gradient(circle at 30% 30%, ${randomColor} , #000)`;
+            ball.style.animationDelay = `${(i) * 0.2}s`;
+
 
 
             scoreBoard.prepend(ball)
 
 
-            setTimeout(() => {
-                ball.style.width = "80%";
-                // ball.style.height = "calc(100% / 10)";
-            }, 10);
+
         }
-        checkScore(score, target);
+        // checkScore(score, target);
 
 
     }

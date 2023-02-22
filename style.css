@@ -17,13 +17,16 @@ html {
 
 body {
     /* border-radius: 50px; */
-    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(115deg, #000000 0%, #00C508 55%, #000000 100%), linear-gradient(115deg, #0057FF 0%, #020077 100%), conic-gradient(from 110deg at -5% 35%, #000000 0deg, #FAFF00 360deg), conic-gradient(from 220deg at 30% 30%, #FF0000 0deg, #0000FF 220deg, #240060 360deg), conic-gradient(from 235deg at 60% 35%, #0089D7 0deg, #0000FF 180deg, #240060 360deg);
+    background-blend-mode: soft-light, soft-light, overlay, screen, normal;
+    background-repeat: no-repeat;
 
 }
 
 header {
 
-    /* height: 10vh; */
+    height: 70px;
     display: flex;
     align-self: center;
     justify-content: center;
@@ -32,7 +35,7 @@ header {
 }
 
 header>h1 {
-    margin-block: 1rem;
+    margin-block: auto;
 }
 
 main {
@@ -42,7 +45,8 @@ main {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    padding: 1rem;
+    padding: 1rem 2rem;
+    min-height: calc(100vh - 70px);
 
 }
 
@@ -51,8 +55,9 @@ main>div {
     background: #f0f0f0;
     box-shadow: 20px 20px 60px #cccccc,
         -20px -20px 60px #ffffff;
-    margin: 1rem 2rem;
     padding: 1rem 2rem;
+    margin-block: 0.45rem;
+
 
 
 
@@ -66,23 +71,33 @@ main>div {
     transform: translateX(-50%);
 }
 
+/* .score-wrapper {
+    width: 100%;
+}
 
-
+ */
 
 .score-board {
 
     display: grid;
+    width: 60%;
+    height: 100%;
     /* flex-direction: row-reverse; */
     grid-template-columns: repeat(5, 1fr);
+
     /* grid-template-rows: repeat(10, 1fr); */
     justify-content: center;
+    justify-items: center;
     align-content: center;
     align-items: stretch;
     gap: .1rem;
     padding: 1rem;
+    margin: auto;
 
 
     border: #3b3b3b62 solid 1px;
+    border-radius: 1rem;
+
 
 
     transition: all 1s ease;
@@ -96,16 +111,67 @@ main>div {
     aspect-ratio: 1/1;
     width: 0;
     /* height: 0; */
-    background-color: blue;
+    background: black;
     border-radius: 50%;
     display: grid;
     place-items: center;
-    font-size: 5vw;
+    font-size: 0vw;
     font-weight: bold;
     color: white;
-    transition: all .5s ease;
+    /* transition: all .5s ease; */
     align-self: center;
+    /* animation: grow 1s ease-in-out forwards; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* font-size: 5vw; */
+    transform: translateY(-150px);
+
+    /* animation: fall 1s ease-in-out forwards 1s; */
+
+    animation-name: fall, grow;
+    animation-duration: 1400ms, 700ms;
+    animation-delay: 0ms, 1400ms;
+    /* add this */
+    animation-timing-function: cubic-bezier(1, 0.1, 1, 1), ease-in-out;
+    animation-timing-function: cubic-bezier(0.73, 0.21, 1, 0.93), ease-in-out;
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: forwards;
 }
+
+@keyframes grow {
+    0% {
+        width: 0;
+        /* height: 0; */
+        font-size: 0px;
+    }
+
+    100% {
+        width: 100%;
+        /* height: 100%; */
+        font-size: 4vw;
+    }
+
+
+}
+
+@keyframes fall {
+    0% {
+        width: 0%;
+        /* height: 100%; */
+        font-size: 0vw;
+        transform: translateY(-150px);
+    }
+
+    100% {
+        width: 100%;
+        /* height: 100%; */
+        font-size: 5vw;
+        transform: translateY(0);
+    }
+
+
+}
+
 
 
 @media screen and (max-width: 768px) {
@@ -113,7 +179,7 @@ main>div {
     h1,
     h2,
     h3 {
-        font-size: 1.4rem;
+        font-size: 1rem;
     }
 
     main {
@@ -122,12 +188,11 @@ main>div {
 
     main>div {
         padding: 1rem;
-        margin: 1rem;
+        /* margin: 1rem; */
     }
-
 
     .score-board {
-        display: grid;
-        gap: .1rem;
+        width: 80%;
     }
+
 }
