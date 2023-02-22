@@ -1,0 +1,53 @@
+.outer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 100;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: outerAnimation 0.4s ease-out forwards;
+    color: white;
+}
+
+.inner {
+
+    /* width: 50%; */
+    /* height: 50%; */
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    overflow: auto;
+    border: 0px;
+    animation: innerAnimation 0.4s ease-out forwards;
+    background-color: rgba(255, 0, 0, 0.452);
+
+}
+
+@keyframes outerAnimation {
+    0% {
+
+        backdrop-filter: blur(00px);
+    }
+
+    100% {
+
+        backdrop-filter: blur(20px);
+    }
+}
+
+@keyframes innerAnimation {
+    0% {
+        transform: scale(.8);
+        filter: blur(20px);
+    }
+
+    100% {
+        transform: scale(1);
+
+        filter: blur(00px);
+    }
+}
