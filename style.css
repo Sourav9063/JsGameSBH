@@ -25,7 +25,21 @@ body {
     background: linear-gradient(115deg, #000000 0%, #00C508 55%, #000000 100%), linear-gradient(115deg, #0057FF 0%, #020077 100%), conic-gradient(from 110deg at -5% 35%, #000000 0deg, #FAFF00 360deg), conic-gradient(from 220deg at 30% 30%, #FF0000 0deg, #0000FF 220deg, #240060 360deg), conic-gradient(from 235deg at 60% 35%, #0089D7 0deg, #0000FF 180deg, #240060 360deg);
     background-blend-mode: soft-light, soft-light, overlay, screen, normal;
     background-repeat: no-repeat;
+    transition: all .5s ease-in-out;
+    scrollbar-width: 0px;
 
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+
+body {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
 }
 
 header {
@@ -131,6 +145,7 @@ main>div {
     gap: .1rem;
     padding: 1rem;
     margin: auto;
+    transform: rotate(180deg);
 
 
     border: #3b3b3b62 solid 1px;
@@ -138,7 +153,7 @@ main>div {
 
 
 
-    transition: all 1s ease;
+    transition: height 1s ease;
 
 
 
@@ -161,7 +176,7 @@ main>div {
     /* width: 100%; */
     /* height: 100%; */
     /* font-size: 5vw; */
-    transform: translateY(-130px);
+    transform: translateY(130px) rotate(-180deg);
 
     /* animation: fall 1s ease-in-out forwards 1s; */
 
@@ -171,6 +186,8 @@ main>div {
     /* add this */
     animation-timing-function: cubic-bezier(1, 0.1, 1, 1), ease-in-out;
     animation-timing-function: cubic-bezier(0.73, 0.21, 1, 0.93), ease-in-out;
+    animation-timing-function: cubic-bezier(0.87, 0.39, 0.99, 0.83), ease-in-out;
+
     animation-iteration-count: 1, 1;
     animation-fill-mode: forwards;
 }
@@ -196,14 +213,17 @@ main>div {
         width: 0%;
         /* height: 100%; */
         font-size: 0vw;
-        transform: translateY(-130px);
+        /* transform: translateY(-130px);
+         */
+        transform: translateY(130px) rotate(-180deg);
+
     }
 
     100% {
         width: 100%;
         /* height: 100%; */
         font-size: 5vw;
-        transform: translateY(0);
+        transform: translateY(0px) rotate(-180deg);
     }
 
 
