@@ -131,7 +131,7 @@ function clickFn() {
             ball.classList.add("ball");
             ball.innerHTML = curScore;
             ball.style.backgroundColor = "${randomColor}"
-            ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), ${randomColor} 70%)`;
+            ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,1), ${randomColor} 35%)`;
             ball.style.animationDelay = `${(i) * 0.2}s`;
 
 
