@@ -42,9 +42,6 @@ header>h1 {
     margin-block: auto;
 }
 
-.target h1 {
-    font-size: 1.6rem;
-}
 
 h2 {
     font-size: 1.3rem;
@@ -75,6 +72,15 @@ main>div {
 
 }
 
+.target>h1 {
+    font-size: 1.6rem;
+    display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 1rem;
+}
+
 .btn-style {
     font-size: 2rem;
     font-weight: bold;
@@ -82,6 +88,26 @@ main>div {
     left: 50%;
     transform: translateX(-50%);
 }
+
+.score,
+.target>section {
+    display: flex;
+    justify-content: space-around;
+}
+
+.score>h2,
+.target>section>h2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score span,
+.target>section>h2>span {
+    margin-top: .5rem;
+}
+
 
 /* .score-wrapper {
     width: 100%;
@@ -114,7 +140,6 @@ main>div {
 
     transition: all 1s ease;
 
-    display: none;
 
 
 }
@@ -136,7 +161,7 @@ main>div {
     /* width: 100%; */
     /* height: 100%; */
     /* font-size: 5vw; */
-    transform: translateY(-150px);
+    transform: translateY(-130px);
 
     /* animation: fall 1s ease-in-out forwards 1s; */
 
@@ -171,7 +196,7 @@ main>div {
         width: 0%;
         /* height: 100%; */
         font-size: 0vw;
-        transform: translateY(-150px);
+        transform: translateY(-130px);
     }
 
     100% {
@@ -184,9 +209,7 @@ main>div {
 
 }
 
-
-
-@media screen and (max-width: 768px) {
+@media screen and (max-width:1020px) {
 
     h1,
     h2,
@@ -197,6 +220,23 @@ main>div {
     .target h1 {
         font-size: 1.1rem;
     }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+    h1,
+    h2,
+    h3 {
+        text-align: center;
+        font-size: .7rem;
+    }
+
+    .target h1 {
+        font-size: 1rem;
+    }
+
 
     main {
         width: 100vw;

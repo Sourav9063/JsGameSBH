@@ -7,6 +7,7 @@ const inner = document.querySelector(".inner");
 
 
 const scoreBoard = document.querySelector(".score-board");
+const scoreBoareWrapper = document.querySelector(".score-wrapper")
 
 let level = localStorage.getItem('level') || 0;;
 let target = randomRange(25, 50);
@@ -18,22 +19,39 @@ let curScore = 0;
 
 let randomColor;
 
+const levelEl = document.querySelector("span.level")
+const targetEl = document.querySelector("span.target ")
+const maxAttemptsEl = document.querySelector("span.max-attempts")
+
 function setTarget(target, maxAttempts) {
-    const levelEl = document.querySelector("span.level")
-    const targetEl = document.querySelector("span.target ")
-    const maxAttemptsEl = document.querySelector("span.max-attempts")
     setInnerHTML(targetEl, target);
     setInnerHTML(maxAttemptsEl, maxAttempts);
     setInnerHTML(levelEl, level);
 }
 setTarget(target, maxAttempts)
+const scoreEl = document.querySelector("span.score ")
+const scoreElH2 = document.querySelector(".score-h2")
 function setScore(score) {
-    const scoreEl = document.querySelector("span.score ")
+    if ((target - score) < 6) {
+        scoreElH2.style.color = "#1aff00"
+    }
+    else {
+        scoreElH2.style.color = "black"
+
+    }
     setInnerHTML(scoreEl, score);
 
 }
+const yourAttemptsEl = document.querySelector("span.your-attempts")
+const yourAttemptsElH2 = document.querySelector(".your-attempts-h2")
 function setAttempts(yourAttempts) {
-    const yourAttemptsEl = document.querySelector("span.your-attempts")
+    if ((maxAttempts - yourAttempts) < 6) {
+        yourAttemptsElH2.style.color = "red"
+    }
+    else {
+        yourAttemptsElH2.style.color = "black"
+
+    }
     setInnerHTML(yourAttemptsEl, yourAttempts);
 }
 setScore(score)
@@ -51,7 +69,7 @@ function reset() {
     setTarget(target, maxAttempts);
     setScore(score);
     setAttempts(yourAttempts)
-    scoreBoard.style.display = "none"
+    // scoreBoareWrapper.style.display = "none"
 
 }
 
@@ -65,7 +83,7 @@ function checkScore(score, target) {
             btn.disabled = false;
 
             inner.innerHTML = "You WON!!!";
-            inner.style.backgroundColor = "rgba(0, 255, 85, 0.452)";
+            inner.style.backgroundColor = "rgba(0, 255, 85, 0.85)";
             outer.style.display = "grid";
 
             reset();
@@ -81,7 +99,7 @@ function checkAttempts(yourAttempts, maxAttempts) {
             btn.disabled = false;
 
             inner.innerHTML = "You LOSE!!!";
-            inner.style.backgroundColor = "rgba(255, 0, 0, 0.452)";
+            inner.style.backgroundColor = "rgba(255, 0, 0, 0.85)";
 
             outer.style.display = "grid";
             reset();
@@ -92,7 +110,7 @@ function checkAttempts(yourAttempts, maxAttempts) {
 
 function clickFn() {
     // window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-    scoreBoard.style.display = "grid";
+    // scoreBoareWrapper.style.display = "block";
 
     yourAttempts++;
     curScore = randomRange(1, 5);
