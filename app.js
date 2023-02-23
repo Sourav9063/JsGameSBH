@@ -135,7 +135,7 @@ function clickFn() {
 
 
 
-            scoreBoard.prepend(ball)
+            scoreBoard.append(ball)
 
 
 
