@@ -26,6 +26,7 @@
     background-color: rgba(91, 91, 91, 0.512) !important;
 }
 
+
 .btn-style:after {
     --slice-0: inset(50% 50% 50% 50%);
     --slice-1: inset(80% -6px 0 0);
@@ -108,6 +109,7 @@
     }
 }
 
+
 @media (min-width: 768px) {
 
     .btn-style,
@@ -117,3 +119,4 @@
         line-height: 88px;
     }
 }
+
