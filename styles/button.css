@@ -1,6 +1,51 @@
-.btn-style,
-.btn-style:after {
-    /* width: 150px; */
+.btn-style {
+    padding: 2rem 1rem;
+    width: 100%;
+    margin-block: .5rem;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(255, 56, 86);
+    letter-spacing: 1.5px;
+    font-size: 15px;
+    transition: all .3s ease;
+    font-family: 'Press Start 2P', cursive;
+
+
+    color: hsl(0, 0%, 100%);
+}
+
+.btn-style:hover {
+    box-shadow: rgb(201, 46, 70) 6px 7px 0px 0px;
+    transform: translateY(-5px);
+    transition: 200ms;
+}
+
+.btn-style:not(:hover) {
+    box-shadow: none !important;
+}
+
+.btn-style:disabled {
+    background-color: rgba(91, 91, 91, 0.512) !important;
+    box-shadow: none !important;
+    transform: translateY(0px);
+
+
+}
+
+.btn-style:active {
+    background-color: rgb(255, 56, 86);
+    /*50, 168, 80*/
+    box-shadow: rgb(201, 46, 70) 0px 0px 0px 0px !important;
+    transform: translateY(0px);
+    transition: 200ms;
+}
+
+
+/* 
+
+.btn-style-old,
+.btn-style-old:after {
+ 
     width: 100%;
     height: 76px;
     line-height: 78px;
@@ -22,11 +67,11 @@
 
 }
 
-.btn-style:disabled {
+.btn-style-old:disabled {
     background-color: rgba(91, 91, 91, 0.512) !important;
 }
 
-.btn-style:after {
+.btn-style-old:after {
     --slice-0: inset(50% 50% 50% 50%);
     --slice-1: inset(80% -6px 0 0);
     --slice-2: inset(50% -6px 30% 0);
@@ -46,7 +91,7 @@
     clip-path: var(--slice-0);
 }
 
-.btn-style:hover:after {
+.btn-style-old:hover:after {
     animation: 1s glitch;
     animation-timing-function: steps(2, end);
 }
@@ -110,10 +155,11 @@
 
 @media (min-width: 768px) {
 
-    .btn-style,
-    .btn-style:after {
-        /* width: 200px; */
+    .btn-style-old,
+    .btn-style-old:after {
+     
         height: 86px;
         line-height: 88px;
     }
 }
+ */

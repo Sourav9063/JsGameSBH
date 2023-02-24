@@ -9,7 +9,7 @@ const inner = document.querySelector(".inner");
 const scoreBoard = document.querySelector(".score-board");
 const scoreBoareWrapper = document.querySelector(".score-wrapper")
 
-let level = localStorage.getItem('level') || 0;;
+let level = localStorage.getItem('level') || 0;
 let target = randomRange(25, 50);
 let maxAttempts = randomRange(0, 25);
 let yourAttempts = 0;
@@ -87,14 +87,18 @@ function checkScore(score, target) {
             outer.style.display = "grid";
 
             reset();
-        }, 1000);
+        }, 1300);
     }
 }
 function checkAttempts(yourAttempts, maxAttempts) {
     // console.log({ yourAttempts, maxAttempts })
 
-    if (!(yourAttempts < maxAttempts)) {
+    if ((!(yourAttempts < maxAttempts)) && score !== target) {
         btn.disabled = true;
+        level = 0;
+        // level--;
+        localStorage.setItem('level', level);
+
         setTimeout(() => {
             btn.disabled = false;
 
@@ -103,7 +107,7 @@ function checkAttempts(yourAttempts, maxAttempts) {
 
             outer.style.display = "grid";
             reset();
-        }, 1000);
+        }, 1300);
     }
 }
 
@@ -126,12 +130,14 @@ function clickFn() {
 
         for (let i = 0; i < curScore; i++) {
             btn.style.backgroundColor = randomColor;
-            btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 6px 0px ${getRandomColor()}`;
+            btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
+            btn.style.boxShadow = `6px 7px 0px rgba(0,0,0,.5), 6px 7px 0px ${randomColor}`;
+
             const ball = document.createElement("div");
             ball.classList.add("ball");
             ball.innerHTML = curScore;
             ball.style.backgroundColor = "${randomColor}"
-            ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,1), ${randomColor} 35%)`;
+            ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,1), ${randomColor} 45%)`;
             ball.style.animationDelay = `${(i) * 0.2}s`;
 
 
@@ -161,3 +167,6 @@ outer.addEventListener("click", () => {
 })
 
 console.dir(btn)
+
+
+// 6px 0px 0px rgba(255,255,255,.5), 6px 0px 0px ${randomColor},
