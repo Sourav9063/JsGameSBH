@@ -169,7 +169,7 @@ main>div {
 .score-board {
 
     display: grid;
-    width: 70%;
+    width: 65%;
     height: 100%;
     /* flex-direction: row-reverse; */
     grid-template-columns: repeat(5, 1fr);
@@ -239,7 +239,7 @@ main>div {
     100% {
         width: 100%;
         /* height: 100%; */
-        font-size: 3vw;
+        font-size: 2.2vw;
     }
 
 
@@ -249,7 +249,7 @@ main>div {
     0% {
         width: 0%;
         /* height: 100%; */
-        font-size: 0vw;
+
         /* transform: translateY(-130px);
          */
         transform: translateY(130px) rotate(-180deg);
@@ -259,7 +259,6 @@ main>div {
     100% {
         width: 100%;
         /* height: 100%; */
-        font-size: 3vw;
         transform: translateY(0px) rotate(-180deg);
     }
 
@@ -282,6 +281,21 @@ main>div {
 
 
 @media screen and (max-width: 768px) {
+    @keyframes grow {
+        0% {
+            width: 0;
+            /* height: 0; */
+            font-size: 0px;
+        }
+
+        100% {
+            width: 100%;
+            /* height: 100%; */
+            font-size: 4vw;
+        }
+
+
+    }
 
     h1 {
         font-size: 1rem;

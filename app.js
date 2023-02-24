@@ -123,6 +123,7 @@ function clickFn() {
     checkAttempts(yourAttempts, maxAttempts)
 
     if ((score + curScore) <= target) {
+        let tmpScore = score;
         score += curScore;
         setScore(score)
         checkScore(score, target);
@@ -135,7 +136,7 @@ function clickFn() {
 
             const ball = document.createElement("div");
             ball.classList.add("ball");
-            ball.innerHTML = curScore;
+            ball.innerHTML = tmpScore + i + 1;
             ball.style.backgroundColor = "${randomColor}"
             ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,1), ${randomColor} 45%)`;
             ball.style.animationDelay = `${(i) * 0.2}s`;
