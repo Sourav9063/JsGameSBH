@@ -123,6 +123,7 @@ function clickFn() {
     checkAttempts(yourAttempts, maxAttempts)
 
     if ((score + curScore) <= target) {
+        let tmpScore = score;
         score += curScore;
         setScore(score)
         checkScore(score, target);
@@ -130,12 +131,12 @@ function clickFn() {
 
         for (let i = 0; i < curScore; i++) {
             btn.style.backgroundColor = randomColor;
-            btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
+            // btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
             btn.style.boxShadow = `6px 7px 0px rgba(0,0,0,.5), 6px 7px 0px ${randomColor}`;
 
             const ball = document.createElement("div");
             ball.classList.add("ball");
-            ball.innerHTML = curScore;
+            ball.innerHTML = tmpScore + i + 1;
             ball.style.backgroundColor = "${randomColor}"
             ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,1), ${randomColor} 45%)`;
             ball.style.animationDelay = `${(i) * 0.2}s`;
