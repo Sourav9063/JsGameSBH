@@ -7,7 +7,6 @@ const inner = document.querySelector(".inner");
 
 
 const scoreBoard = document.querySelector(".score-board");
-const scoreBoareWrapper = document.querySelector(".score-wrapper")
 
 let level = localStorage.getItem('level') || 0;
 let target = randomRange(25, 50);
@@ -122,7 +121,7 @@ function clickFn() {
     setAttempts(yourAttempts);
     checkAttempts(yourAttempts, maxAttempts)
 
-    if ((score + curScore) <= target) {
+    if (((score + curScore) <= target) && yourAttempts <= maxAttempts) {
         let tmpScore = score;
         score += curScore;
         setScore(score)
