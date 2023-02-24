@@ -1,82 +1,47 @@
-import { randomRange, setInnerHTML, getRandomColor } from "./scripts/helper.js";
+import { randomRange, setInnerHTML, resetHtml, getRandomColor } from "./scripts/helper.js";
+import { setAttempts, setScore, setTarget, createBall } from "./scripts/uiHelper.js";
 
 
 const btn = document.querySelector("#play");
 const outer = document.querySelector(".outer");
 const inner = document.querySelector(".inner");
-
-
 const scoreBoard = document.querySelector(".score-board");
 
-let level = localStorage.getItem('level') || 0;
-let target = randomRange(25, 50);
-let maxAttempts = randomRange(0, 25);
-let yourAttempts = 0;
-let score = 0;
-let curScore = 0;
-
-
-let randomColor;
-
-const levelEl = document.querySelector("span.level")
-const targetEl = document.querySelector("span.target ")
-const maxAttemptsEl = document.querySelector("span.max-attempts")
-
-function setTarget(target, maxAttempts) {
-    setInnerHTML(targetEl, target);
-    setInnerHTML(maxAttemptsEl, maxAttempts);
-    setInnerHTML(levelEl, level);
+const GameLogic = {
+    level: localStorage.getItem('level') || 0,
+    target: randomRange(25, 50),
+    maxAttempts: randomRange(0, 25),
+    yourAttempts: 0,
+    score: 0,
+    curScore: 0
 }
-setTarget(target, maxAttempts)
-const scoreEl = document.querySelector("span.score ")
-const scoreElH2 = document.querySelector(".score-h2")
-function setScore(score) {
-    if ((target - score) < 6) {
-        scoreElH2.style.color = "#1aff00"
-    }
-    else {
-        scoreElH2.style.color = "black"
 
-    }
-    setInnerHTML(scoreEl, score);
 
-}
-const yourAttemptsEl = document.querySelector("span.your-attempts")
-const yourAttemptsElH2 = document.querySelector(".your-attempts-h2")
-function setAttempts(yourAttempts) {
-    if ((maxAttempts - yourAttempts) < 6) {
-        yourAttemptsElH2.style.color = "red"
-    }
-    else {
-        yourAttemptsElH2.style.color = "black"
+setTarget(GameLogic)
+setScore(GameLogic)
+setAttempts(GameLogic)
 
-    }
-    setInnerHTML(yourAttemptsEl, yourAttempts);
-}
-setScore(score)
-setAttempts(yourAttempts)
-
-function reset() {
-    target = randomRange(25, 50);
-    maxAttempts = randomRange(0, 25);
-    score = 0;
-    curScore = 0;
-    yourAttempts = 0;
+function reset(GameLogic) {
+    GameLogic.target = randomRange(25, 50);
+    GameLogic.maxAttempts = randomRange(0, 25);
+    GameLogic.score = 0;
+    GameLogic.curScore = 0;
+    GameLogic.yourAttempts = 0;
     setInnerHTML(btn, "Play");
     btn.style.backgroundColor = "rgb(255,0, 0)";
-    scoreBoard.innerHTML = "";
-    setTarget(target, maxAttempts);
-    setScore(score);
-    setAttempts(yourAttempts)
+    resetHtml(scoreBoard)
+    setTarget(GameLogic);
+    setScore(GameLogic);
+    setAttempts(GameLogic)
     // scoreBoareWrapper.style.display = "none"
 
 }
 
-function checkScore(score, target) {
-    if (score === target) {
+function checkScore(GameLogic) {
+    if (GameLogic.score === GameLogic.target) {
         btn.disabled = true;
 
-        localStorage.setItem('level', ++level);
+        localStorage.setItem('level', String(++GameLogic.level));
 
         setTimeout(() => {
             btn.disabled = false;
@@ -85,18 +50,18 @@ function checkScore(score, target) {
             inner.style.backgroundColor = "rgba(0, 255, 85, 0.85)";
             outer.style.display = "grid";
 
-            reset();
+            reset(GameLogic);
         }, 1300);
     }
 }
-function checkAttempts(yourAttempts, maxAttempts) {
+function checkAttempts(GameLogic) {
     // console.log({ yourAttempts, maxAttempts })
 
-    if ((!(yourAttempts < maxAttempts)) && score !== target) {
+    if ((!(GameLogic.yourAttempts < GameLogic.maxAttempts)) && GameLogic.score !== GameLogic.target) {
         btn.disabled = true;
-        level = 0;
+        GameLogic.level = 0;
         // level--;
-        localStorage.setItem('level', level);
+        localStorage.setItem('level', GameLogic.level);
 
         setTimeout(() => {
             btn.disabled = false;
@@ -105,44 +70,36 @@ function checkAttempts(yourAttempts, maxAttempts) {
             inner.style.backgroundColor = "rgba(255, 0, 0, 0.85)";
 
             outer.style.display = "grid";
-            reset();
+            reset(GameLogic);
         }, 1300);
     }
 }
 
 
-function clickFn() {
+function clickFn(GameLogic) {
     // window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
     // scoreBoareWrapper.style.display = "block";
+    console.log("Clicked")
+    GameLogic.yourAttempts = GameLogic.yourAttempts + 1;
+    GameLogic.curScore = randomRange(1, 5);
+    setInnerHTML(btn, GameLogic.curScore);
+    setAttempts(GameLogic);
+    checkAttempts(GameLogic)
 
-    yourAttempts++;
-    curScore = randomRange(1, 5);
-    setInnerHTML(btn, curScore);
-    setAttempts(yourAttempts);
-    checkAttempts(yourAttempts, maxAttempts)
+    if (((GameLogic.score + GameLogic.curScore) <= GameLogic.target) && GameLogic.yourAttempts <= GameLogic.maxAttempts) {
+        let tmpScore = GameLogic.score;
+        GameLogic.score += GameLogic.curScore;
+        setScore(GameLogic)
+        checkScore(GameLogic);
+        let randomColor = getRandomColor();
 
-    if (((score + curScore) <= target) && yourAttempts <= maxAttempts) {
-        let tmpScore = score;
-        score += curScore;
-        setScore(score)
-        checkScore(score, target);
-        randomColor = getRandomColor();
-
-        for (let i = 0; i < curScore; i++) {
+        for (let i = 0; i < GameLogic.curScore; i++) {
             btn.style.backgroundColor = randomColor;
             // btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
             btn.style.boxShadow = `6px 7px 0px rgba(0,0,0,.5), 6px 7px 0px ${randomColor}`;
 
-            const ball = document.createElement("div");
-            ball.classList.add("ball");
-            ball.innerHTML = tmpScore + i + 1;
-            ball.style.backgroundColor = "${randomColor}"
-            ball.style.background = `radial-gradient(circle at 30% 30%, rgba(255,255,255,1), ${randomColor} 45%)`;
-            ball.style.animationDelay = `${(i) * 0.2}s`;
 
-
-
-            scoreBoard.append(ball)
+            scoreBoard.append(createBall(tmpScore, i, randomColor))
 
 
 
@@ -151,16 +108,14 @@ function clickFn() {
 
 
     }
-    else {
-
-    }
-
-
 
 }
 
 
-btn.addEventListener("click", clickFn);
+btn.addEventListener("click", (e) => {
+    console.log("btn")
+    clickFn(GameLogic)
+});
 
 outer.addEventListener("click", () => {
     outer.style.display = "none"
@@ -169,4 +124,49 @@ outer.addEventListener("click", () => {
 console.dir(btn)
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 6px 0px 0px rgba(255,255,255,.5), 6px 0px 0px ${randomColor},
+
+
+
+// let level = localStorage.getItem('level') || 0;
+// let target = randomRange(25, 50);
+// let maxAttempts = randomRange(0, 25);
+// let yourAttempts = 0;
+// let score = 0;
+// let curScore = 0;
