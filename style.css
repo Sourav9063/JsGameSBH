@@ -88,7 +88,7 @@ main {
     overflow: scroll;
     width: 65vw;
     backdrop-filter: blur(5px);
-    background: #cec4c450;
+    background: #dbdada91;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -112,8 +112,8 @@ main {
 main>div {
     border-radius: 1rem;
     background: #f0f0f0;
-    box-shadow: 20px 20px 60px #cccccc,
-        -20px -20px 60px #ffffff;
+    /* box-shadow: 20px 20px 60px #cccccc,
+        -20px -20px 60px #ffffff; */
     padding: 1rem 2rem;
     margin-block: 0.45rem;
 
@@ -136,8 +136,8 @@ main>div {
     font-size: 2rem;
     font-weight: bold;
     position: relative;
-    left: 50%;
-    transform: translateX(-50%);
+    /* left: 50%;
+    transform: translateX(-50%); */
 }
 
 .score,
