@@ -169,7 +169,7 @@ main>div {
 .score-board {
 
     display: grid;
-    width: 60%;
+    width: 70%;
     height: 100%;
     /* flex-direction: row-reverse; */
     grid-template-columns: repeat(5, 1fr);
@@ -179,7 +179,7 @@ main>div {
     justify-items: center;
     align-content: center;
     align-items: stretch;
-    gap: .1rem;
+    /* gap: .1rem; */
     padding: 1rem;
     margin: auto;
     transform: rotate(180deg);
@@ -220,7 +220,7 @@ main>div {
     animation-name: fall, grow;
     animation-duration: 1400ms, 700ms;
     animation-delay: 0ms, 1400ms;
-    /* add this */
+
     animation-timing-function: cubic-bezier(1, 0.1, 1, 1), ease-in-out;
     animation-timing-function: cubic-bezier(0.73, 0.21, 1, 0.93), ease-in-out;
     animation-timing-function: cubic-bezier(0.87, 0.39, 0.99, 0.83), ease-in-out;
@@ -283,7 +283,10 @@ main>div {
 
 @media screen and (max-width: 768px) {
 
-    h1,
+    h1 {
+        font-size: 1rem;
+    }
+
     h2,
     h3 {
         text-align: center;
@@ -311,7 +314,7 @@ main>div {
     }
 
     .score-board {
-        width: 80%;
+        width: 100%;
     }
 
 }

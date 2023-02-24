@@ -130,7 +130,7 @@ function clickFn() {
 
         for (let i = 0; i < curScore; i++) {
             btn.style.backgroundColor = randomColor;
-            btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
+            // btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
             btn.style.boxShadow = `6px 7px 0px rgba(0,0,0,.5), 6px 7px 0px ${randomColor}`;
 
             const ball = document.createElement("div");
