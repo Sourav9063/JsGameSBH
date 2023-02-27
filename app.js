@@ -96,7 +96,7 @@ function clickFn(GameLogic) {
         for (let i = 0; i < GameLogic.curScore; i++) {
             btn.style.backgroundColor = randomColor;
             // btn.style.boxShadow = `6px 0px 0px ${getRandomColor()}, 0px 7px 0px ${getRandomColor()}`;
-            btn.style.boxShadow = `6px 7px 0px rgba(0,0,0,.5), 6px 7px 0px ${randomColor}`;
+            btn.style.boxShadow = `6px 7px 0px rgba(0,0,0,.3), 6px 7px 0px ${randomColor}`;
 
 
             scoreBoard.append(createBall(tmpScore, i, randomColor))
